@@ -37,6 +37,24 @@ body {
   font-family: var(--font-jetbrains), ui-monospace, monospace;
 }
 
+/* Brand logo (header + mobile navbar) */
+.brand-logo {
+  display: inline-flex;
+  align-items: center;
+  color: var(--foreground);
+}
+.brand-logo__mark {
+  height: 26px;
+  width: auto;
+  display: block;
+  transition: color 0.25s ease;
+}
+@media (hover: hover) {
+  .brand-logo:hover .brand-logo__mark {
+    color: var(--accent);
+  }
+}
+
 /* Desktop nav */
 .nav-link {
   position: relative;

@@ -2,6 +2,7 @@ import { ReactNode, useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Marquee } from "@/components/Marquee";
+import { Logo } from "@/components/Logo";
 
 const NAV = [
   { href: "/", label: "Home" },
@@ -107,8 +108,8 @@ export const Frame = ({
 
       {/* Desktop header */}
       <header className="hidden header lg:flex justify-between p-4 items-center">
-        <Link href="/" className="font-mono-ui text-sm tracking-tight">
-          Ariel Moguillansky
+        <Link href="/" aria-label="Home" className="brand-logo">
+          <Logo className="brand-logo__mark" />
         </Link>
         <nav className="flex gap-x-6 font-mono-ui text-sm uppercase tracking-wider">
           {NAV.filter((n) => n.href !== "/").map((n) => (
@@ -131,10 +132,11 @@ export const Frame = ({
         <div className="mobile-menu__bar">
           <Link
             href="/"
-            className="font-mono-ui mobile-menu__brand"
+            aria-label="Home"
+            className="brand-logo"
             onClick={() => setMenuOpen(false)}
           >
-            Ariel M.
+            <Logo className="brand-logo__mark" />
           </Link>
           <button
             type="button"
