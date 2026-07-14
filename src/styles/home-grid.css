@@ -1,0 +1,301 @@
+.container-grid {
+  background-color: #efefef;
+  display: grid;
+  grid-template-columns: 1fr 20px 8fr 20px 1fr;
+  grid-template-rows: 72px 7fr 20px 1.5fr 20px;
+}
+
+/* Scrolling (detail) pages grow taller than the viewport, which would stretch
+   the fractional body + footer rows. Let the body row grow with content and
+   pin the footer row to the height it has on a full-viewport homepage:
+   (100vh - 112px fixed rows) * 1.5fr / 8.5fr total. */
+@media (min-width: 1024px) {
+  .container-grid--scroll {
+    grid-template-rows: 72px auto 20px calc((100vh - 112px) * 1.5 / 8.5) 20px;
+  }
+}
+
+.body {
+  padding: 30px;
+  grid-column-start: 2;
+  grid-column-end: 5;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+.left-pad {
+  border-right: 1px solid #d7d7d7;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: end;
+}
+
+.right-pad {
+  border-left: 1px solid #d7d7d7;
+  grid-column-start: 5;
+  grid-column-end: end;
+  grid-row-start: 1;
+  grid-row-end: end;
+}
+
+.top {
+  border-bottom: 1px solid #d7d7d7;
+  grid-column-start: 1;
+  grid-column-end: end;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: var(--background);
+}
+
+.header {
+  grid-column-start: 2;
+  grid-column-end: 5;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  position: sticky;
+  top: 0;
+  z-index: 31;
+}
+
+.bottom {
+  border-top: 1px solid #d7d7d7;
+  grid-column-start: 1;
+  grid-column-end: end;
+  grid-row-start: 3;
+  grid-row-end: end;
+  background-color: rgb(232, 232, 232);
+}
+
+.bottom-belt {
+  border-top: 1px solid #d7d7d7;
+  border-bottom: 1px solid #d7d7d7;
+  grid-column-start: 1;
+  grid-column-end: end;
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
+
+.bottom-belt-content {
+  background-color: #171717;
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  position: relative;
+  overflow: hidden;
+  container-type: inline-size;
+}
+
+/* ---------- Footer belt: server → packets → computer ---------- */
+.belt-node {
+  grid-row-start: 3;
+  grid-row-end: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ef4444;
+  color: #ffffff;
+  z-index: 2;
+}
+
+.belt-node svg {
+  width: 14px;
+  height: 14px;
+}
+
+.belt-node--server {
+  grid-column-start: 2;
+  grid-column-end: 3;
+}
+
+.belt-node--computer {
+  grid-column-start: 4;
+  grid-column-end: 5;
+}
+
+/* Footer belt: a binary bitstream flowing server → computer. The row is
+   rendered twice, so translating it -50% loops seamlessly; a few digits
+   flicker as they pass. */
+.belt-signal {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.belt-bits {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  font-size: 10px;
+  line-height: 1;
+  letter-spacing: 2px;
+  color: #ff5b5b;
+  will-change: transform;
+  animation: belt-bits-scroll 32s linear infinite;
+}
+
+.belt-bits span {
+  opacity: 0.85;
+}
+
+.belt-bits span.dim {
+  opacity: 0.4;
+}
+
+.belt-bits span.flick {
+  animation: belt-bits-flick 1.3s steps(2, jump-none) infinite;
+}
+
+@keyframes belt-bits-scroll {
+  from {
+    transform: translate(0, -50%);
+  }
+  to {
+    transform: translate(-50%, -50%);
+  }
+}
+
+@keyframes belt-bits-flick {
+  0%,
+  100% {
+    opacity: 0.9;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .belt-bits,
+  .belt-bits span.flick {
+    animation: none;
+  }
+}
+
+.bottom-belt-end {
+  border-top: 1px solid #d7d7d7;
+  grid-column-start: 1;
+  grid-column-end: end;
+  grid-row-start: 5;
+  grid-row-end: end;
+}
+
+.left-belt {
+  border-right: 1px solid #d7d7d7;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 3;
+  grid-row-end: end;
+}
+
+.right-belt {
+  border-left: 1px solid #d7d7d7;
+  grid-column-start: 4;
+  grid-column-end: 5;
+  grid-row-start: 3;
+  grid-row-end: end;
+}
+
+.footer {
+  overflow: hidden;
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 4;
+  grid-row-end: 5;
+}
+
+.footer-banner {
+  background-color: aliceblue;
+  border: 1px solid #d7d7d7;
+  grid-column-start: 2;
+  grid-column-end: 5;
+  grid-row-start: 3;
+  grid-row-end: end;
+}
+
+.left-corner {
+  border-right: 1px solid #d7d7d7;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 3;
+  grid-row-end: end;
+}
+
+.right-corner {
+  border-left: 1px solid #d7d7d7;
+  grid-column-start: 5;
+  grid-column-end: end;
+  grid-row-start: 3;
+  grid-row-end: end;
+}
+
+/* Collapse to the single-column mobile layout at exactly the point the header
+   switches to the hamburger and the h-screen/min-h-screen classes drop off
+   (Tailwind `lg` = min-width:1024px). Keeping these in sync avoids a broken
+   641–1023px band where the desktop grid ran with no viewport height. */
+@media (max-width: 1023.98px) {
+  .container-grid {
+    grid-template-columns: 20px 1fr 20px;
+    /* Body row (2nd) flexes to absorb all slack; the footer banner row (4th) is
+       a fixed height so it's identical on every page. Combined with the
+       min-height below, short pages like the index fill the viewport with the
+       banner pinned to the bottom instead of leaving dead space. */
+    grid-template-rows: minmax(72px, auto) 1fr 20px 160px 20px;
+    min-height: 100vh; /* fallback for browsers without dvh */
+    min-height: 100dvh;
+  }
+
+  .body {
+    padding: 16px;
+    grid-column-end: 3;
+  }
+
+  .right-pad {
+    grid-column-start: 3;
+  }
+
+  .header {
+    grid-column-start: 2;
+    grid-column-end: 3;
+  }
+
+  .left-belt {
+    grid-column-start: 1;
+    grid-column-end: 2
+  }
+
+  .footer {
+    grid-column-start: 2;
+    grid-column-end: 3;
+  }
+
+  .footer-banner {
+    grid-column-start: 2;
+    grid-column-end: 3;
+  }
+
+  .right-belt {
+    grid-column-start: 3;
+  }
+
+  .bottom-belt-content {
+    grid-column-start: 2;
+    grid-column-end: 3;
+  }
+
+  .belt-node--server {
+    grid-column-start: 1;
+    grid-column-end: 2;
+  }
+
+  .belt-node--computer {
+    grid-column-start: 3;
+    grid-column-end: 4;
+  }
+}

@@ -1,0 +1,116 @@
+.project-index {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  cursor: default;
+}
+
+.project-index__head {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #9a9a9a;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #d7d7d7;
+}
+
+.project-index__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.project-row {
+  border-bottom: 1px solid #d7d7d7;
+  transition: opacity 0.35s ease;
+}
+
+.project-row.is-dimmed {
+  opacity: 0.32;
+}
+
+.project-row__link {
+  display: grid;
+  grid-template-columns: 3rem 1fr auto auto;
+  align-items: baseline;
+  gap: 1.5rem;
+  padding: clamp(0.5rem, 2.2vh, 1.4rem) 0.25rem;
+  color: #171717;
+  text-decoration: none;
+  transition: padding-left 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.3s ease;
+}
+
+.project-row.is-active .project-row__link {
+  padding-left: 1.5rem;
+  color: #ef4444;
+}
+
+.project-row__num {
+  font-size: 0.75rem;
+  color: #9a9a9a;
+  letter-spacing: 0.05em;
+}
+
+.project-row.is-active .project-row__num {
+  color: #ef4444;
+}
+
+.project-row__title {
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: clamp(1.6rem, 4.2vw, 3.4rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.project-row__category {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #7a7a7a;
+  white-space: nowrap;
+  text-align: right;
+}
+
+.project-row.is-active .project-row__category {
+  color: #171717;
+}
+
+.project-row__year {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #7a7a7a;
+  white-space: nowrap;
+}
+
+.project-row.is-active .project-row__year {
+  color: #171717;
+}
+
+@media (max-width: 1023.98px) {
+  .project-row__link {
+    grid-template-columns: 2rem 1fr;
+    gap: 0.75rem;
+    row-gap: 0.15rem;
+  }
+  .project-row__category {
+    grid-column: 2;
+    text-align: left;
+  }
+  .project-row__year {
+    display: none;
+  }
+  .project-index__list {
+    justify-content: flex-start;
+    gap: 0.25rem;
+  }
+}
