@@ -41,19 +41,33 @@ export default function ProjectDetail({ project, prev, next }: Props) {
           <p className="detail-overview">{project.overview}</p>
         </header>
 
-        <div
-          className="detail-hero"
-          style={{ background: project.accent }}
-        >
+        <div className="detail-hero" style={{ background: project.accent }}>
           {project.image ? (
-            <Image
-              src={project.image}
-              alt={project.title}
-              fill
-              priority
-              sizes="(max-width: 640px) 100vw, 66vw"
-              style={{ objectFit: "cover" }}
-            />
+            <div className="detail-browser">
+              <div className="detail-browser__bar">
+                <span className="detail-browser__dot" aria-hidden />
+                <span className="detail-browser__dot" aria-hidden />
+                <span className="detail-browser__dot" aria-hidden />
+                <span className="detail-browser__url font-mono-ui">
+                  {project.links.live
+                    ? project.links.live
+                        .replace(/^https?:\/\//, "")
+                        .replace(/^www\./, "")
+                        .replace(/\/$/, "")
+                    : project.slug}
+                </span>
+              </div>
+              <div className="detail-browser__view">
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  priority
+                  sizes="(max-width: 640px) 100vw, 66vw"
+                  style={{ objectFit: "contain", objectPosition: "top" }}
+                />
+              </div>
+            </div>
           ) : (
             <span className="detail-hero__label font-mono-ui">
               {project.title}

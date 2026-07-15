@@ -202,21 +202,68 @@
   margin: 0;
 }
 
+/* Hero: a minimal browser window floated on the project's accent canvas —
+   reads as a real, shipped product rather than a raw cropped screenshot. */
 .detail-hero {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 6;
   border-radius: 4px;
-  overflow: hidden;
   display: flex;
-  align-items: flex-end;
-  padding: 1.5rem;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1.25rem, 5vw, 3.5rem);
 }
 .detail-hero__label {
   color: rgba(255, 255, 255, 0.9);
   font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 0.2em;
+  padding: clamp(2.5rem, 8vw, 5rem) 0;
+}
+
+.detail-browser {
+  width: 100%;
+  max-width: 960px;
+  background: #fff;
+  border-radius: 8px 8px 6px 6px;
+  overflow: hidden;
+  box-shadow: 0 22px 50px -22px rgba(0, 0, 0, 0.45);
+}
+.detail-browser__bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 0.8rem;
+  background: #f2f2f3;
+  border-bottom: 1px solid #e2e2e3;
+}
+.detail-browser__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #d0d0d2;
+  flex: 0 0 auto;
+}
+.detail-browser__url {
+  margin-left: 0.6rem;
+  flex: 1;
+  min-width: 0;
+  background: #fff;
+  border: 1px solid #e2e2e3;
+  border-radius: 5px;
+  padding: 0.3rem 0.7rem;
+  font-size: 0.72rem;
+  color: #5a5a5c;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.detail-browser__view {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #fff;
 }
 
 .detail-cols {
@@ -430,8 +477,8 @@
     grid-template-columns: 1fr;
     gap: 2rem;
   }
-  .detail-hero {
-    aspect-ratio: 4 / 3;
+  .detail-browser__view {
+    aspect-ratio: 16 / 10;
   }
   .detail-results {
     grid-template-columns: 1fr;

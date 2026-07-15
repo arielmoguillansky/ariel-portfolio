@@ -115,7 +115,7 @@ export const projects: Project[] = [
     ],
     accent: "#232178",
     image: "/projects/ruth.png",
-    links: {},
+    links: { live: "https://beta.ruthis.org" },
   },
   {
     slug: "pytorch",
@@ -183,7 +183,7 @@ export const projects: Project[] = [
     ],
     accent: "#2a2fb8",
     image: "/projects/tjm.png",
-    links: { live: "https://thejewishmuseum.org" },
+    links: { live: "https://collections.thejewishmuseum.org" },
   },
   {
     slug: "fora-travel",
